@@ -13,3 +13,6 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+# JetBrains IDE (GoLand v2021.2.1)
+.idea
