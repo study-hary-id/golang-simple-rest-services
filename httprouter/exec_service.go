@@ -44,7 +44,7 @@ func goVersion(w http.ResponseWriter, _ *http.Request, _ httprouter.Params) {
 func getFileContent(w http.ResponseWriter, _ *http.Request, params httprouter.Params) {
 	_, err := fmt.Fprintf(w, getCommandOutput(
 		"/bin/cat", // The location of cat (program that show text file) binary.
-		"data/"+params.ByName("name"),
+		"../data/"+params.ByName("name"),
 	))
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
