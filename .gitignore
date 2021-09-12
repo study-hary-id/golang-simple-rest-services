@@ -16,3 +16,6 @@
 
 # JetBrains IDE (GoLand v2021.2.1)
 .idea
+
+# macOS file system
+.DS_Store
