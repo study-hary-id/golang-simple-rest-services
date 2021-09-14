@@ -32,7 +32,8 @@ func getCommandOutput(command string, arguments ...string) string {
 // goVersion serves the version of Go installed on the machine.
 func goVersion(w http.ResponseWriter, _ *http.Request, _ httprouter.Params) {
 	_, err := fmt.Fprintf(w, getCommandOutput(
-		"/usr/local/go/bin/go", // The location of go binary
+		// TODO: Replace according to the location of the Go program.
+		"/usr/local/go/bin/go",
 		"version",
 	))
 	if err != nil {
@@ -43,7 +44,10 @@ func goVersion(w http.ResponseWriter, _ *http.Request, _ httprouter.Params) {
 // getFileContent shows the content within file which is requested.
 func getFileContent(w http.ResponseWriter, _ *http.Request, params httprouter.Params) {
 	_, err := fmt.Fprintf(w, getCommandOutput(
-		"/bin/cat", // The location of cat (program that show text file) binary.
+		// TODO: Replace according to the location of the cat program.
+		// TODO: To prevent error, run this codes in the root project.
+		// 		Command: go run httprouter/exec_service.go
+		"/bin/cat",
 		"../data/"+params.ByName("name"),
 	))
 	if err != nil {
