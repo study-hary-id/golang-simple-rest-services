@@ -10,7 +10,7 @@ import (
 
 func main() {
 	var (
-		r = mux.NewRouter()
+		r    = mux.NewRouter()
 		PORT = ":8000"
 	)
 
