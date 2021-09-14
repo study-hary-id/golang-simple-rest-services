@@ -22,6 +22,7 @@ func main() {
 	//	articleHandler,
 	//).Name("articleRoute")
 
+	// Create subrouter for /articles endpoint: Best Practices.
 	sr := r.PathPrefix("/articles").Subrouter()
 	sr.HandleFunc("/{category}/{id:[0-9]+}", articleHandler).
 		Name("articleHandler")
@@ -40,7 +41,6 @@ func main() {
 		ReadTimeout:  15 * time.Second,
 		WriteTimeout: 15 * time.Second,
 	}
-
 	fmt.Printf("Server listening at http://localhost%s\n", PORT)
 	log.Fatal(s.ListenAndServe())
 }
