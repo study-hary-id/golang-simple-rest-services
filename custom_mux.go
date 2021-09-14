@@ -6,10 +6,10 @@ import (
 	"net/http"
 )
 
-// CustomServeMux is a multiplexer that handle many HTTP request.
+// CustomServeMux is a multiplexer that handles many HTTP requests.
 type CustomServeMux struct{}
 
-// ServeHTTP handles HTTP request and serve HTTP response for CustomServeMux.
+// ServeHTTP handles HTTP request and serves HTTP response for CustomServeMux.
 func (p *CustomServeMux) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path == "/" {
 		_, err := w.Write([]byte("CustomServeMux\n"))
