@@ -12,29 +12,29 @@ func articleHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	_, err := fmt.Fprintf(
 		w,
-		"%v in Category: %v\n",
+		"Article(%v) in Category: %v\n",
 		vars["id"],
 		vars["category"],
 	)
 	if err != nil {
-		return
+		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 }
 
 // detailsHandler handles details of particular articles.
 func detailsHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
-	_, err := fmt.Fprintf(w, "Details of ID: %v\n", vars["id"])
+	_, err := fmt.Fprintf(w, "Details of Article(%v)\n", vars["id"])
 	if err != nil {
-		return
+		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 }
 
 // settingsHandler handles settings of particular articles.
 func settingsHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
-	_, err := fmt.Fprintf(w, "Settings of ID: %v\n", vars["id"])
+	_, err := fmt.Fprintf(w, "Settings of Article(%v)\n", vars["id"])
 	if err != nil {
-		return
+		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 }
