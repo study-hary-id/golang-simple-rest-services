@@ -4,8 +4,10 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"time"
 
+	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 )
 
@@ -30,13 +32,16 @@ func main() {
 	sr.HandleFunc("/{category}/{id:[0-9]+}/settings", settingsHandler).
 		Name("settingsArticle")
 
+	// Implement handlers.LoggingHandler from gorilla.
+	loggedRouter := handlers.LoggingHandler(os.Stdout, sr)
+
 	// Get the resource from any predefined routes.
 	//url, err := r.Get("articleRoute").URL("category", "books", "id", "123")
 	//fmt.Println(url.URL) 						// prints /articles/books/123
 
 	s := &http.Server{
 		Addr:         PORT,
-		Handler:      r,
+		Handler:      loggedRouter,
 		ReadTimeout:  15 * time.Second,
 		WriteTimeout: 15 * time.Second,
 	}
