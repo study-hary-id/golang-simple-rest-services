@@ -14,6 +14,7 @@ func main() {
 		PORT = ":8000"
 	)
 
+	// GET /articles == GET /articles/  strict trailing slash.
 	r.StrictSlash(true)
 	r.Path("/articles/").Handler(http.HandlerFunc(articleHandler))
 
