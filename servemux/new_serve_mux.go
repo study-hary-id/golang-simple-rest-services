@@ -24,9 +24,15 @@ func main() {
 	)
 
 	newMux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		if err := serveText("NewServeMux", w); err != nil {
-			fmt.Printf("/: error: %s\n", err.Error())
+		if r.URL.Path == "/" {
+			if err := serveText("NewServeMux", w); err != nil {
+				fmt.Printf("/: error: %s\n", err.Error())
+			}
+			return
 		}
+
+		// Response with 404 - not Found if access other endpoints except `/`.
+		http.NotFound(w, r)
 		return
 	})
 
