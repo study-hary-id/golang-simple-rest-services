@@ -12,7 +12,9 @@ func main() {
 	var (
 		PORT             = ":8000"
 		mainLogicHandler = http.HandlerFunc(mainLogic)
-		chain            = alice.New(filterContentType, setServerTimeCookie).Then(mainLogicHandler)
+		chain            = alice.
+			New(filterContentType, setServerTimeCookie).
+			Then(mainLogicHandler)
 	)
 
 	http.Handle("/cities", chain)
