@@ -20,6 +20,11 @@ e.g. (`gorilla/mux`, `httprouter`, `alice`).
 
 3. [`gorilla/mux` library](gorilla)
 
+    `gorila/mux` is a wonderful package for writing beautiful routes for web applications
+    and API servers. Gorilla Mux provides tons of options to control routing such as
+    path-based matching, query-base matching, domain-base matching, sub-domain base,
+    and reverse URL generation.
+
 ## <img src="images/crash-dummy.svg" alt="Gopher robo crash" width="24"> Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss
