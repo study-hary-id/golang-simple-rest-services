@@ -8,6 +8,7 @@ import (
 	"strconv"
 )
 
+// serveText writes given text as a response to http request.
 func serveText(text string, w http.ResponseWriter) error {
 	_, err := w.Write([]byte(text + "\n"))
 	if err != nil {
@@ -20,7 +21,7 @@ func serveText(text string, w http.ResponseWriter) error {
 func main() {
 	var (
 		newMux = http.NewServeMux()
-		PORT   = ":8000"
+		port   = ":8000"
 	)
 
 	newMux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
@@ -52,6 +53,6 @@ func main() {
 		return
 	})
 
-	fmt.Printf("Server listening at http://localhost%s\n\n", PORT)
-	log.Fatal(http.ListenAndServe(PORT, newMux))
+	fmt.Printf("Server listening at http://localhost%s\n\n", port)
+	log.Fatal(http.ListenAndServe(port, newMux))
 }

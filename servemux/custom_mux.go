@@ -26,8 +26,8 @@ func (p *CustomServeMux) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 func main() {
 	var (
 		mux  = &CustomServeMux{}
-		PORT = ":8000"
+		port = ":8000"
 	)
-	fmt.Printf("Server listening at http://localhost%s\n", PORT)
-	log.Fatal(http.ListenAndServe(PORT, mux))
+	fmt.Printf("Server listening at http://localhost%s\n", port)
+	log.Fatal(http.ListenAndServe(port, mux))
 }
