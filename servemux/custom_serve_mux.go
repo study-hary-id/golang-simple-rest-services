@@ -4,30 +4,34 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"time"
 )
 
 // CustomServeMux is a multiplexer that handles many HTTP requests.
-type CustomServeMux struct{}
+type CustomServeMux struct {
+	Started time.Time
+}
 
 // ServeHTTP handles HTTP request and serves HTTP response for CustomServeMux.
 func (p *CustomServeMux) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path == "/" {
-		_, err := w.Write([]byte("CustomServeMux\n"))
-		if err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-		}
-		return
-	}
 
-	http.NotFound(w, r)
+	currentUptime := fmt.Sprintf("Current uptime: %s\n", time.Since(p.Started))
+	_, err := w.Write([]byte("CustomServeMux\n" + currentUptime))
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
 	return
+
+}
+
+// NewUptimeHandler returns CustomServeMux with provided started time.
+func NewUptimeHandler() http.Handler {
+	return &CustomServeMux{Started: time.Now()}
 }
 
 func main() {
-	var (
-		mux  = &CustomServeMux{}
-		port = ":8000"
-	)
+	port := ":8000"
+	http.Handle("/", NewUptimeHandler())
 	fmt.Printf("Server listening at http://localhost%s\n", port)
-	log.Fatal(http.ListenAndServe(port, mux))
+	log.Fatal(http.ListenAndServe(port, nil))
 }
