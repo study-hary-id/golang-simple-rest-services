@@ -10,7 +10,7 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-// getCommandOutput executes system commands and returns the results as a string.
+// getCommandOutput executes system commands and returns the output as a string.
 func getCommandOutput(command string, arguments ...string) string {
 	var (
 		out    bytes.Buffer
