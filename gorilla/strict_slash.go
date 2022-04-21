@@ -14,8 +14,8 @@ func main() {
 		PORT = ":8000"
 	)
 
-	// GET /articles == GET /articles/  strict trailing slash.
 	r.StrictSlash(true)
+	// GET /articles == GET /articles/
 	r.Path("/articles/").Handler(http.HandlerFunc(articleHandler))
 
 	fmt.Printf("Server listening at http://localhost%s\n", PORT)
