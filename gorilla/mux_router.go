@@ -17,12 +17,6 @@ func main() {
 		PORT = ":8000"
 	)
 
-	// Create route and define the handler with original style.
-	//r.HandleFunc(
-	//	"/articles/{category}/{id:[0-9]+}",
-	//	articleHandler,
-	//).Name("articleRoute")
-
 	// Create subrouter for /articles endpoint: Best Practices.
 	sr := r.PathPrefix("/articles").Subrouter()
 	sr.HandleFunc("/{category}/{id:[0-9]+}", articleHandler).
@@ -34,10 +28,6 @@ func main() {
 
 	// Implement handlers.LoggingHandler from gorilla.
 	loggedRouter := handlers.LoggingHandler(os.Stdout, sr)
-
-	// Get the resource from any predefined routes.
-	//url, err := r.Get("articleRoute").URL("category", "books", "id", "123")
-	//fmt.Println(url.URL) 						// prints /articles/books/123
 
 	s := &http.Server{
 		Addr:         PORT,
